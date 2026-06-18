@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+
+  <let name="urdf_file" value="$(find-pkg-share rebot)/urdf/rebot.urdf"/>
+
+  <node pkg="robot_state_publisher" exec="robot_state_publisher" name="robot_state_publisher">
+    <param name="robot_description" value="$(command 'cat $(var urdf_file)')"/>
+  </node>
+
+  <node pkg="rebot_motion" exec="trajectory_publisher" name="trajectory_publisher"/>
+
+  <node pkg="rviz2" exec="rviz2" name="rviz2"/>
+
+</launch>
